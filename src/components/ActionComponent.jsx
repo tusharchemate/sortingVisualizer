@@ -28,10 +28,13 @@ const Actioncomponent = ({ onRangeSelect, getSelectedSort, handleSort }) => {
       />
 
       <select onChange={onHandleSortSelect}>
-        <option disabled> Select Sort</option>
-        <option>Bubble Sort</option>
-        <option>Quick Sort</option>
-        <option>Merge Sort</option>
+        <option disabled selected>
+          {" "}
+          Select Sort
+        </option>
+        <option value="Bubble">Bubble Sort</option>
+        <option value="Quick">Quick Sort</option>
+        <option value="Merge">Merge Sort</option>
       </select>
 
       <button onClick={onHandleSort}>Sort </button>
