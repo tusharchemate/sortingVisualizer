@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ActionComponet from "../components/ActionComponent";
 import BarComponent from "../components/BarComponent";
 import "../components/common.css";
+import {bubbleSort, quickSort} from '../../src/utility/sortingAlgo';
+
 
 const generateRandomNumber = (count) => {
   const randomNumbers = [];
@@ -11,10 +13,6 @@ const generateRandomNumber = (count) => {
     randomNumbers.push(randomNumber);
   }
   return randomNumbers;
-};
-
-const quickSort = () => {
-  console.log("==quick");
 };
 
 const SortingVisualizer = () => {
@@ -28,24 +26,7 @@ const SortingVisualizer = () => {
     setComparingIndices(indices);
   };
 
-  const bubbleSort = async (arr) => {
-    let swapped = false;
-    for (let i = 0; i < arr.length - 1; i++) {
-      for (let j = 0; j < arr.length - i - 1; j++) {
-        if (arr[j] > arr[j + 1]) {
-          toggleComparisonState(true, [j, j + 1]);
-          await new Promise((resolve) => setTimeout(resolve, 2000));
-
-          [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
-          swapped = true;
-
-          toggleComparisonState(false, []);
-          setData([...arr]);
-        }
-      }
-    }
-    return swapped;
-  };
+  const delay = 500;
 
   const handleRangeSelect = (range) => {
     const res = generateRandomNumber(range);
@@ -60,7 +41,7 @@ const SortingVisualizer = () => {
     if (selectedSort) {
       switch (selectedSort) {
         case "Bubble":
-          bubbleSort(data);
+          bubbleSort(data, toggleComparisonState, delay);
           break;
         case "Quick":
           quickSort(data);
@@ -70,6 +51,11 @@ const SortingVisualizer = () => {
       }
     }
   };
+
+  useEffect(() => {
+    setIsComparing(true);
+    setComparingIndices([]);
+  }, [isComparing]);
 
   return (
     <div className="sortingContainer">
