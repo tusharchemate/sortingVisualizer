@@ -1,11 +1,8 @@
-import React from 'react'
+import React from "react";
+import "../components/common.css";
 
-const BarComponent = () => {
-  return (
-    <div>
-       BarComponent
-    </div>
-  )
-}
+const BarComponent = ({ value }) => {
+  return <div className="bar" style={{ height: `${value*5}px` }}>{value}</div>;
+};
 
-export default BarComponent
+export default BarComponent;

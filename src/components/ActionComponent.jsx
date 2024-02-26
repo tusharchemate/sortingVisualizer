@@ -1,28 +1,42 @@
-import React from 'react'
+import React, { useState } from "react";
+import "../components/common.css";
 
-const Actioncomponent = () => {
+const Actioncomponent = ({ onRangeSelect, getSelectedSort, handleSort }) => {
+  const [range, setRange] = useState(0);
 
+  const onSelectSpeed = (e) => {
+    setRange(e.target.value);
+    onRangeSelect(e.target.value);
+  };
 
-  const onSelectSpeed = ()=> {
-    
-  }
+  const onHandleSortSelect = (e) => {
+    getSelectedSort(e.target.value);
+  };
 
-  const onHandleSortSelect =() => {
+  const onHandleSort = () => {
+    handleSort();
+  };
 
-  }
-
-  const onHandleSort =() => {
-
-  }
-
- 
   return (
-    <div>
-        <button onClick={onSelectSpeed}>Speed </button>
-        <button onClick={onHandleSortSelect}>Select Sort </button>
-        <button onClick={onHandleSort}>Sort </button>
-    </div>
-  )
-}
+    <div className="action">
+      <input
+        min={0}
+        max={20}
+        value={range}
+        onChange={(e) => onSelectSpeed(e)}
+        type="range"
+      />
 
-export default Actioncomponent
+      <select onChange={onHandleSortSelect}>
+        <option disabled> Select Sort</option>
+        <option>Bubble Sort</option>
+        <option>Quick Sort</option>
+        <option>Merge Sort</option>
+      </select>
+
+      <button onClick={onHandleSort}>Sort </button>
+    </div>
+  );
+};
+
+export default Actioncomponent;

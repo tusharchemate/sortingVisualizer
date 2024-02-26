@@ -4,7 +4,7 @@ import SortingVisualizer from "./container/SortingVisualizer";
 function App() {
   return (
     <>
-      <SortingVisualizer/>
+      <SortingVisualizer />
     </>
   );
 }
