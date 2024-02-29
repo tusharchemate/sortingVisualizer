@@ -3,6 +3,7 @@ import ActionComponet from "../components/ActionComponent";
 import BarComponent from "../components/BarComponent";
 import "../components/common.css";
 import {bubbleSort, quickSort} from '../../src/utility/sortingAlgo';
+import { mergeSortRecursive } from "../utility/recursiveMergeSort";
 
 
 const generateRandomNumber = (count) => {
@@ -43,8 +44,8 @@ const SortingVisualizer = () => {
         case "Bubble":
           bubbleSort(data, toggleComparisonState, delay);
           break;
-        case "Quick":
-          quickSort(data);
+        case "Merge":
+          mergeSortRecursive(data, toggleComparisonState, delay);
           break;
         default:
           break;
